@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
 [ext_resource path="res://NavigationMesh.gd" type="Script" id=3]
-[ext_resource path="res://LevelGrid.tres" type="Material" id=4]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ObstacleMaterial.tres" type="Material" id=6]
-[ext_resource path="res://Spawner.gd" type="Script" id=7]
-[ext_resource path="res://Wave.gd" type="Script" id=8]
+[ext_resource path="res://Level/LevelGenerator/Ground.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Level/ObstacleMaterial.tres" type="Material" id=6]
+[ext_resource path="res://Spawning/Spawner.gd" type="Script" id=7]
+[ext_resource path="res://Spawning/Wave.gd" type="Script" id=8]
+[ext_resource path="res://Level/LevelGenerator/Obstacle.tscn" type="PackedScene" id=9]
 
 [sub_resource type="NavigationMesh" id=5]
 vertices = PoolVector3Array( -9.5, 0.5, 2, -8, 0.5, 2, -7.25, 0.5, 1.5, 1.5, 0.5, -7.25, 2, 0.5, -8, 2, 0.5, -9.5, -9.5, 0.5, -9.5, -7.25, 0.5, 1.5, -4.25, 0.5, 1.75, 1.75, 0.5, -4, -9.5, 0.5, -9.5, -9.5, 0.5, 2, -7.25, 0.5, 1.5, 1.75, 0.5, -4, 1.5, 0.5, -7.25, 2, 0.5, -9.5, 2, 0.5, -8, 2.75, 0.5, -8.5, 7.25, 0.5, 6.75, 4.25, 0.5, 6.5, 4.25, 0.5, 9.5, 9.5, 0.5, 9.5, 8.5, 0.5, -4.25, 7.25, 0.5, -3.25, 9.5, 0.5, 0, 8.75, 0.5, 5.25, 7.25, 0.5, 6.75, 9.5, 0.5, 9.5, 7.25, 0.5, -3.25, 6, 0.5, -3.25, 6.25, 0.5, 1.5, 7.5, 0.5, 1.5, 9.5, 0.5, 0, 7.5, 0.5, -8.5, 9.5, 0.5, -9.5, 2, 0.5, -9.5, 2.75, 0.5, -8.5, 8.75, 0.5, 5.25, 9.5, 0.5, 9.5, 9.5, 0.5, 0, 8.5, 0.5, 2.25, 7.5, 0.5, -8.5, 8.5, 0.5, -7.75, 9.5, 0.5, -9.5, 7.5, 0.5, 1.5, 8.5, 0.5, 2.25, 9.5, 0.5, 0, 8.5, 0.5, -4.25, 9.5, 0.5, 0, 9.5, 0.5, -9.5, 8.5, 0.5, -7.75, 4.75, 0.5, 1.5, 6.25, 0.5, 1.5, 6, 0.5, -3.25, 4.75, 0.5, 1.5, 6, 0.5, -3.25, 2.75, 0.5, -3.25, 3.75, 0.5, 2.25, -3.25, 0.5, 2.75, -3.25, 0.5, 4.5, 3.5, 0.5, 4.5, 3.75, 0.5, 2.25, 2.75, 0.5, -3.25, 1.75, 0.5, -4, -4.25, 0.5, 1.75, -3.25, 0.5, 2.75, 3.5, 0.5, 4.5, -8.5, 0.5, 2.75, -8, 0.5, 2, -9.5, 0.5, 2, 4.25, 0.5, 9.5, 4.25, 0.5, 6.5, 3.5, 0.5, 5.5, -3.25, 0.5, 4.5, -3.25, 0.5, 7.25, -2.75, 0.5, 9.5, -8.5, 0.5, 7.5, -8.5, 0.5, 2.75, -9.5, 0.5, 2, -9.5, 0.5, 9.5, -3.25, 0.5, 7.25, -4.25, 0.5, 8.5, -2.75, 0.5, 9.5, -7.75, 0.5, 8.5, -8.5, 0.5, 7.5, -9.5, 0.5, 9.5, -7.75, 0.5, 8.5, -9.5, 0.5, 9.5, -2.75, 0.5, 9.5, -4.25, 0.5, 8.5, 3.5, 0.5, 5.5, 3.5, 0.5, 4.5, -3.25, 0.5, 4.5 )
@@ -34,18 +35,9 @@ navmesh = SubResource( 5 )
 travel_cost = 1.181
 script = ExtResource( 3 )
 
-[node name="Ground" type="CSGBox" parent="NavigationMeshInstance"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-use_in_baked_light = true
-use_collision = true
-width = 22.0
-depth = 22.0
-material = ExtResource( 4 )
+[node name="Ground" parent="NavigationMeshInstance" instance=ExtResource( 4 )]
 
-[node name="CSGBox" type="CSGBox" parent="NavigationMeshInstance"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 4 )
-use_collision = true
-material = ExtResource( 6 )
+[node name="CSGBox" parent="NavigationMeshInstance" instance=ExtResource( 9 )]
 
 [node name="CSGBox2" type="CSGBox" parent="NavigationMeshInstance"]
 transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -6 )

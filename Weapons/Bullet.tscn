@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Bullet.gd" type="Script" id=1]
+[ext_resource path="res://Weapons/Bullet.gd" type="Script" id=1]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 1, 0.866667, 0, 1 )
@@ -21,6 +21,7 @@ mesh = SubResource( 2 )
 [node name="Area" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 0, 0 )
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
