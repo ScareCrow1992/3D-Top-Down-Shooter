@@ -3,7 +3,7 @@ extends Node
 class_name Stats
 
 export var max_HP = 10
-var current_HP = max_HP
+var current_HP
 
 signal you_died_signal
 
@@ -14,6 +14,7 @@ signal you_died_signal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	current_HP = max_HP
 	pass # Replace with function body.
 
 func take_hit(damage):

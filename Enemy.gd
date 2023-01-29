@@ -37,31 +37,50 @@ var current_state = state.SEEKING
 func _ready():
 #	navserver_update_path(player.global_transform.origin)
 	meshInstance = $MeshInstance
-	print(meshInstance)
+#	print(meshInstance)
 	meshInstance.set_surface_material(0, default_material)
 	
 	
 func _physics_process(delta):
 	#	print(global_transform.origin)
-	
-	match current_state:
-		state.SEEKING:
-			if current_node < path.size():
-				var waypoint = path[current_node]
-				waypoint.y = global_transform.origin.y
-				var direction: Vector3 = waypoint - global_transform.origin
-				if direction.length() < 1:
-					current_node += 1
-				else:
-					move_and_slide(direction.normalized() * speed)
-		state.ATTACKING:
-#			print("ATTACK!")
-			move_and_attack()
-		state.RETURNING:
-			print("I'm going back!")
-			move_and_attack()
-		state.RESTING:
-			print("Resting!")
+	if is_instance_valid(player):
+		match current_state:
+			state.SEEKING:
+				if current_node < path.size():
+					var waypoint = path[current_node]
+					waypoint.y = global_transform.origin.y
+					
+					# befor move
+					var seeking_vector: Vector3 = waypoint - global_transform.origin
+					
+					move_and_slide(seeking_vector.normalized() * speed)
+					
+					# after move
+					seeking_vector = waypoint - global_transform.origin
+					
+					if seeking_vector.length() < 1:
+						current_node += 1
+#					else:
+#						move_and_slide(seeking_vector.normalized() * speed)
+
+					# Check if we're close to the player
+					# If close, then Attack!
+					
+					if $AttackRadius.overlaps_body(player):
+						# Attack!
+						init_attack()
+						pass
+						
+
+			state.ATTACKING:
+	#			print("ATTACK!")
+				move_and_attack()
+			state.RETURNING:
+	#			print("I'm going back!")
+				move_and_attack()
+			state.RESTING:
+	#			print("Resting!")
+				pass
 		
 #func update_path(target_position):
 #	path = nav.get_simple_path(global_transform.origin, target_position)
@@ -72,17 +91,23 @@ func move_and_attack():
 	var direction: Vector3 = attack_vector.normalized()
 	var distance = attack_vector.length()
 	
-	print("I'm this far away from my target: ", distance)
+#	print("I'm this far away from my target: ", distance)
 	move_and_slide(direction * speed * attack_speed_multiplier)
 	
 	if distance < 1:
 		match current_state:
 			state.ATTACKING:
+				# Do damage to the player
+				var player_stats: Stats = player.get_node("Stats")
+				player_stats.take_hit(1)			
+				print("I hit you: ", player_stats.current_HP, "/", player_stats.max_HP)
 				current_state = state.RETURNING
 				attack_target = return_target
 			state.RETURNING:
 				current_state = state.RESTING
 				meshInstance.set_surface_material(0, resting_material)
+				collide_with_other_enemies(true)
+				move_and_slide(Vector3.ZERO)
 				attack_timer.start()
 
 func collide_with_other_enemies(should_we_collide):
@@ -102,21 +127,22 @@ func _on_Stats_you_died_signal():
 	
 
 
-func _on_AttackRadius_body_entered(body):
-	if body == player:
-		attack_timer.start()
-		attack_target = player.global_transform.origin
-		return_target = global_transform.origin
-		current_state = state.ATTACKING
-		meshInstance.set_surface_material(0, attack_material)
-		collide_with_other_enemies(false)
+func init_attack():
+#	attack_timer.start()
+	attack_target = player.global_transform.origin
+	return_target = global_transform.origin
+	current_state = state.ATTACKING
+	meshInstance.set_surface_material(0, attack_material)
+	collide_with_other_enemies(false)
 #	print("something entered my attack radius : ", body)
 
 
 
 func _on_PathUpdateTimer_timeout():#	update_path(player.global_transform.origin)
-	navserver_update_path(player.global_transform.origin)
-	current_node = 0
+#	print(player)
+	if is_instance_valid(player):
+		navserver_update_path(player.global_transform.origin)
+		current_node = 0
 #	print(path.size())
 
 func _on_AttackTimer_timeout():

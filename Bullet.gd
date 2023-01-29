@@ -25,7 +25,7 @@ func _ready():
 
 
 func _on_Area_body_entered(body: Node):
-	print("I hit you!", body)
+#	print("I hit you!", body)
 	queue_free()
 	
 	if body.has_node("Stats"):
