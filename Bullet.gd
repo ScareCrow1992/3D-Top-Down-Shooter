@@ -2,6 +2,7 @@ extends Spatial
 
 
 export var speed = 70
+export var damage = 1
 
 const KILL_TIME = 2
 var timer = 0
@@ -23,5 +24,16 @@ func _ready():
 #	pass
 
 
-func _on_Area_body_entered(body):
+func _on_Area_body_entered(body: Node):
 	print("I hit you!", body)
+	queue_free()
+	
+	if body.has_node("Stats"):
+		var stats_node: Stats = body.find_node("Stats")
+		stats_node.take_hit(damage)
+		
+		
+		
+		
+		
+		
