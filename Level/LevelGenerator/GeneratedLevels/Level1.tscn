@@ -1,8 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://NavigationMesh.gd" type="Script" id=1]
-[ext_resource path="res://Level/LevelGrid.tres" type="Material" id=2]
-[ext_resource path="res://Level/LevelGenerator/Shader/FGShaderMaterial.tres" type="Material" id=3]
 [ext_resource path="res://Level/LevelGenerator/Ground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Level/LevelGenerator/Obstacle.tscn" type="PackedScene" id=5]
 
@@ -19,173 +17,112 @@ navigation_layers = 8
 travel_cost = 1.181
 script = ExtResource( 1 )
 
-[node name="Ground" type="CSGBox" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-use_in_baked_light = true
-use_collision = true
-collision_layer = 9
-width = 22.0
-depth = 22.0
-material = ExtResource( 2 )
+[node name="Ground" parent="." instance=ExtResource( 4 )]
 
-[node name="CSGBox" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.652986, 6 )
-use_collision = true
 height = 1.30597
-material = ExtResource( 3 )
 
-[node name="CSGBox2" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox2" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.779858, 4 )
-use_collision = true
 height = 1.55972
-material = ExtResource( 3 )
 
-[node name="CSGBox3" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox3" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.653566, 8 )
-use_collision = true
 height = 1.30713
-material = ExtResource( 3 )
 
-[node name="CSGBox4" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox4" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.868916, 6 )
-use_collision = true
 height = 1.73783
-material = ExtResource( 3 )
 
-[node name="CSGBox5" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox5" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.956955, 2 )
-use_collision = true
 height = 1.91391
-material = ExtResource( 3 )
 
-[node name="CSGBox6" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox6" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.631108, 2 )
-use_collision = true
 height = 1.26222
-material = ExtResource( 3 )
 
-[node name="CSGBox7" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox7" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.915956, -2 )
-use_collision = true
 height = 1.83191
-material = ExtResource( 3 )
 
-[node name="CSGBox8" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox8" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.821505, 0 )
-use_collision = true
 height = 1.64301
-material = ExtResource( 3 )
 
-[node name="CSGBox9" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox9" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.500501, -8 )
-use_collision = true
 height = 1.001
-material = ExtResource( 3 )
 
-[node name="CSGBox10" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox10" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.680419, 2 )
-use_collision = true
 height = 1.36084
-material = ExtResource( 3 )
 
-[node name="CSGBox11" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox11" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.869923, -10 )
-use_collision = true
 height = 1.73985
-material = ExtResource( 3 )
 
-[node name="CSGBox12" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox12" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.951456, 8 )
-use_collision = true
 height = 1.90291
-material = ExtResource( 3 )
 
-[node name="CSGBox13" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox13" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.60066, -8 )
-use_collision = true
 height = 1.20132
-material = ExtResource( 3 )
 
-[node name="CSGBox14" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox14" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.882749, 2 )
-use_collision = true
 height = 1.7655
-material = ExtResource( 3 )
 
-[node name="CSGBox15" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox15" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.887821, 10 )
-use_collision = true
 height = 1.77564
-material = ExtResource( 3 )
 
-[node name="CSGBox16" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox16" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.543613, 6 )
-use_collision = true
 height = 1.08723
-material = ExtResource( 3 )
 
-[node name="CSGBox17" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox17" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.736479, 2 )
-use_collision = true
 height = 1.47296
-material = ExtResource( 3 )
 
-[node name="CSGBox18" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox18" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.814696, 10 )
-use_collision = true
 height = 1.62939
-material = ExtResource( 3 )
 
-[node name="CSGBox19" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox19" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.504747, 10 )
-use_collision = true
 height = 1.00949
-material = ExtResource( 3 )
 
-[node name="CSGBox20" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox20" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.729621, 0 )
-use_collision = true
 height = 1.45924
-material = ExtResource( 3 )
 
-[node name="CSGBox21" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox21" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.850289, -2 )
-use_collision = true
 height = 1.70058
-material = ExtResource( 3 )
 
-[node name="CSGBox22" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox22" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.65908, 6 )
-use_collision = true
 height = 1.31816
-material = ExtResource( 3 )
 
-[node name="CSGBox23" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox23" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.696484, -8 )
-use_collision = true
 height = 1.39297
-material = ExtResource( 3 )
 
-[node name="CSGBox24" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox24" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.834299, 8 )
-use_collision = true
 height = 1.6686
-material = ExtResource( 3 )
 
-[node name="CSGBox25" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox25" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.638817, 4 )
-use_collision = true
 height = 1.27763
-material = ExtResource( 3 )
 
-[node name="CSGBox26" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox26" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.922134, 8 )
-use_collision = true
 height = 1.84427
-material = ExtResource( 3 )
 
-[node name="CSGBox27" type="CSGBox" parent="." instance=ExtResource( 5 )]
+[node name="CSGBox27" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.640216, 10 )
-use_collision = true
 height = 1.28043
-material = ExtResource( 3 )
