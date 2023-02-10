@@ -33,12 +33,12 @@ func Setup_Navserver():
 	
 #	Get_Path()
 	
-
-func Get_Path():
-	var from = NavigationServer.map_get_closest_point(map, $"../Enemy".global_transform.origin)
-	var to = NavigationServer.map_get_closest_point(map, $"../Player".global_transform.origin)
-
-	path = NavigationServer.map_get_path(map, from, to, true)
+#
+#func Get_Path():
+#	var from = NavigationServer.map_get_closest_point(map, $"../Enemy".global_transform.origin)
+#	var to = NavigationServer.map_get_closest_point(map, $"../Player".global_transform.origin)
+#
+#	path = NavigationServer.map_get_path(map, from, to, true)
 
 #	
 #	print(from)

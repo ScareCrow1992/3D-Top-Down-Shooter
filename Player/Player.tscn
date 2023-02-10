@@ -39,7 +39,7 @@ skeleton = NodePath("../..")
 material/0 = SubResource( 4 )
 
 [node name="Hand" type="Position3D" parent="Body"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.0455, -1.10964, -0.520876 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.18494, -0.31157, -0.520876 )
 
 [node name="GunController" type="Node" parent="."]
 script = ExtResource( 2 )
